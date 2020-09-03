@@ -9,8 +9,8 @@ variable "vpc_id" {
 }
 
 variable "route_table_ids" {
-  type        = set(string)
-  description = "Set of routing table IDs to route to HVN peering connection"
+  type        = list(string)
+  description = "List of routing table IDs to route to HVN peering connection"
 }
 
 variable "consul_security_group_name" {
@@ -21,7 +21,7 @@ variable "consul_security_group_name" {
 
 variable "consul_security_group_ids" {
   type        = list(string)
-  description = "List of security groups to allow HCP Consul connection"
+  description = "List of security groups IDs to allow HCP Consul connection"
   default     = []
 }
 
