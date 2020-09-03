@@ -13,6 +13,12 @@ variable "route_table_ids" {
   description = "List of routing tables to route to HVN peering connection"
 }
 
+variable "consul_security_group_name" {
+  type        = string
+  description = "Name of HCP Consul security group"
+  default     = "allow-hcp-consul"
+}
+
 variable "consul_security_group_ids" {
   type        = list(string)
   description = "List of security groups to allow HCP Consul connection"

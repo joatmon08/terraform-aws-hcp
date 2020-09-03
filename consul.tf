@@ -62,6 +62,6 @@ resource "aws_security_group" "allow_hcp_consul" {
 
 
   tags = merge({
-    Name = "allow-hcp-consul"
+    Name = var.consul_security_group_name
   }, var.tags)
 }
