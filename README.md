@@ -28,10 +28,10 @@ This module configures the following components for HCP:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| consul\_security\_group\_ids | List of security groups to allow HCP Consul connection | `list(string)` | `[]` | no |
+| consul\_security\_group\_ids | List of security groups IDs to allow HCP Consul connection | `list(string)` | `[]` | no |
 | consul\_security\_group\_name | Name of HCP Consul security group | `string` | `"allow-hcp-consul"` | no |
 | hvn\_cidr\_block | CIDR Block of HashiCorp Virtual Network | `string` | n/a | yes |
-| route\_table\_ids | List of routing tables to route to HVN peering connection | `list(string)` | n/a | yes |
+| route\_table\_ids | List of routing table IDs to route to HVN peering connection | `list(string)` | n/a | yes |
 | tags | Map of tags for resources | `map(string)` | <pre>{<br>  "module": "terraform-aws-consul"<br>}</pre> | no |
 | vpc\_id | The ID of your VPC | `string` | n/a | yes |
 
