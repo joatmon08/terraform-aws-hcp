@@ -1,5 +1,4 @@
 data "aws_vpc_peering_connection" "hvn" {
-  status      = "pending-acceptance"
   cidr_block  = var.hvn_cidr_block
   peer_vpc_id = var.vpc_id
 }
