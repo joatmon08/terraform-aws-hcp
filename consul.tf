@@ -1,67 +1,56 @@
-resource "aws_security_group" "allow_hcp_consul" {
-  count       = length(var.consul_security_group_ids) > 0 ? 1 : 0
-  name        = "allow-hcp-consul"
-  description = "Allow HCP Consul traffic"
-  vpc_id      = var.vpc_id
+locals {
+  ingress_consul_rules = [
+    {
+      description = "HCP Consul Server RPC"
+      port        = 8300
+      protocol    = "tcp"
+    },
+    {
+      description = "Consul LAN Serf (tcp)"
+      port        = 8301
+      protocol    = "tcp"
+    },
+    {
+      description = "Consul LAN Serf (udp)"
+      port        = 8301
+      protocol    = "udp"
+    },
+    {
+      description = "Consul LAN Serf (udp)"
+      port        = 8301
+      protocol    = "udp"
+    },
+    {
+      description = "Consul HTTP"
+      port        = 80
+      protocol    = "udp"
+    },
+    {
+      description = "Consul HTTPS"
+      port        = 443
+      protocol    = "udp"
+    }
+  ]
 
-  ingress {
-    description = "Consul Server RPC"
-    from_port   = 8300
-    to_port     = 8300
-    protocol    = "tcp"
-    cidr_blocks = [var.hvn_cidr_block]
-  }
+  hcp_consul_security_groups = flatten([
+    for _, sg in var.hcp_consul_security_group_ids : [
+      for _, rule in local.ingress_consul_rules : {
+        security_group_id = sg
+        description       = rule.description
+        port              = rule.port
+        protocol          = rule.protocol
+      }
+    ]
+  ])
+}
 
-  ingress {
-    description = "Consul LAN Serf (tcp)"
-    from_port   = 8301
-    to_port     = 8301
-    protocol    = "tcp"
-    cidr_blocks = [var.hvn_cidr_block]
-  }
-
-  ingress {
-    description = "Consul LAN Serf (udp)"
-    from_port   = 8301
-    to_port     = 8301
-    protocol    = "udp"
-    cidr_blocks = [var.hvn_cidr_block]
-  }
-
-  ingress {
-    description     = "Consul LAN Serf (tcp) to Security Groups"
-    from_port       = 8301
-    to_port         = 8301
-    protocol        = "tcp"
-    security_groups = var.consul_security_group_ids
-  }
-
-  ingress {
-    description     = "Consul LAN Serf (udp) to Security Groups"
-    from_port       = 8301
-    to_port         = 8301
-    protocol        = "udp"
-    security_groups = var.consul_security_group_ids
-  }
-
-  ingress {
-    description = "Consul HTTP"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "udp"
-    cidr_blocks = [var.hvn_cidr_block]
-  }
-
-  ingress {
-    description = "Consul HTTPS"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "udp"
-    cidr_blocks = [var.hvn_cidr_block]
-  }
-
-
-  tags = merge({
-    Name = var.consul_security_group_name
-  }, var.tags)
+resource "aws_security_group_rule" "hcp_consul" {
+  for_each          = toset(local.hcp_consul_security_groups)
+  description       = each.value.description
+  protocol          = each.value.protocol
+  security_group_id = each.value.security_group_id
+  cidr_blocks       = [var.hvn_cidr_block]
+  from_port         = each.value.port
+  to_port           = each.value.port
+  type              = "ingress"
 }
