@@ -45,12 +45,12 @@ locals {
 }
 
 resource "aws_security_group_rule" "hcp_consul" {
-  for_each          = toset(local.hcp_consul_security_groups)
-  description       = each.value.description
-  protocol          = each.value.protocol
-  security_group_id = each.value.security_group_id
+  count             = length(local.hcp_consul_security_groups)
+  description       = local.hcp_consul_security_groups[count.index].description
+  protocol          = local.hcp_consul_security_groups[count.index].protocol
+  security_group_id = local.hcp_consul_security_groups[count.index].security_group_id
   cidr_blocks       = [var.hvn_cidr_block]
-  from_port         = each.value.port
-  to_port           = each.value.port
+  from_port         = local.hcp_consul_security_groups[count.index].port
+  to_port           = local.hcp_consul_security_groups[count.index].port
   type              = "ingress"
 }
