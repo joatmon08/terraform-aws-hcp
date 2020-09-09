@@ -22,5 +22,5 @@ variable "hcp_consul_security_group_ids" {
 variable "tags" {
   type        = map(string)
   description = "Map of tags for resources"
-  default     = { module = "terraform-aws-consul" }
+  default     = { module = "terraform-aws-hcp" }
 }
