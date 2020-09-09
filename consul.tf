@@ -16,11 +16,6 @@ locals {
       protocol    = "udp"
     },
     {
-      description = "Consul LAN Serf (udp)"
-      port        = 8301
-      protocol    = "udp"
-    },
-    {
       description = "Consul HTTP"
       port        = 80
       protocol    = "udp"
