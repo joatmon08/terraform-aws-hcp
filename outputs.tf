@@ -1,4 +1,10 @@
-output "hvn_vpc_peering_connection_id" {
-  value       = data.aws_vpc_peering_connection.hvn.id
-  description = "ID of peering connection for HVN and VPC"
+output "hvn_id" {
+  value       = hcp_hvn.hvn.id
+  description = "ID of HashiCorp Virtual Network."
+}
+
+
+output "hcp_cluster_id" {
+  value       = var.hcp_consul_name != "" ? hcp_consul_cluster.consul.0.id : ""
+  description = "ID of HCP Consul cluster."
 }
