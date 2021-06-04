@@ -17,7 +17,7 @@ data "aws_availability_zones" "available" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.77.0"
+  version = "3.0.0"
 
   name                 = local.name
   cidr                 = "10.0.0.0/16"
@@ -31,7 +31,7 @@ module "vpc" {
   tags = local.tags
 }
 
-module "hcp_consul" {
+module "hcp_cluster" {
   source                    = "./.."
   hvn_region                = var.region
   hvn_name                  = local.name
@@ -43,4 +43,5 @@ module "hcp_consul" {
   number_of_route_table_ids = length(local.route_table_ids)
   tags                      = local.tags
   hcp_consul_name           = local.name
+  hcp_vault_name            = local.name
 }

@@ -76,3 +76,15 @@ variable "tags" {
   description = "Map of tags for resources"
   default     = { module = "terraform-aws-hcp" }
 }
+
+variable "hcp_vault_name" {
+  type        = string
+  description = "Name for HCP Vault cluster. If left as an empty string, a cluster will not be created."
+  default     = ""
+}
+
+variable "hcp_vault_public_endpoint" {
+  type        = bool
+  description = "Enable public endpoint for HCP Vault cluster."
+  default     = false
+}
