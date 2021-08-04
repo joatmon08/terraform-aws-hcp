@@ -65,6 +65,12 @@ variable "hcp_consul_tier" {
   }
 }
 
+variable "hcp_consul_version" {
+  type        = string
+  description = "Minimum Consul version. Defaults to HCP recommendation."
+  default     = null
+}
+
 variable "hcp_consul_public_endpoint" {
   type        = bool
   description = "Enable public endpoint for HCP Consul cluster."

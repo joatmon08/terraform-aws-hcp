@@ -13,21 +13,20 @@ This module configures the following components for HCP:
 You must have access to [HashiCorp Cloud Platform (HCP)](https://www.hashicorp.com/cloud-platform/).
 Create an HCP [service principal](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/guides/auth)
 before using the [HCP Provider for Terraform](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs).
-
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=0.15 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.44 |
-| <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | >= 0.6 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.52 |
+| <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | >= 0.11 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.44.0 |
-| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.6.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.52.0 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.11.0 |
 
 ## Modules
 
@@ -43,6 +42,7 @@ No modules.
 | [hcp_aws_network_peering.peer](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/aws_network_peering) | resource |
 | [hcp_consul_cluster.consul](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/consul_cluster) | resource |
 | [hcp_hvn.hvn](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/hvn) | resource |
+| [hcp_hvn_route.hvn](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/hvn_route) | resource |
 | [hcp_vault_cluster.vault](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs/resources/vault_cluster) | resource |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
@@ -55,6 +55,7 @@ No modules.
 | <a name="input_hcp_consul_public_endpoint"></a> [hcp\_consul\_public\_endpoint](#input\_hcp\_consul\_public\_endpoint) | Enable public endpoint for HCP Consul cluster. | `bool` | `false` | no |
 | <a name="input_hcp_consul_security_group_ids"></a> [hcp\_consul\_security\_group\_ids](#input\_hcp\_consul\_security\_group\_ids) | Security Group IDs to allow HCP Consul. | `list(string)` | `[]` | no |
 | <a name="input_hcp_consul_tier"></a> [hcp\_consul\_tier](#input\_hcp\_consul\_tier) | Tier for HCP Consul cluster. Must be `development` or `standard`. | `string` | `"development"` | no |
+| <a name="input_hcp_consul_version"></a> [hcp\_consul\_version](#input\_hcp\_consul\_version) | Minimum Consul version. Defaults to HCP recommendation. | `string` | `null` | no |
 | <a name="input_hcp_vault_name"></a> [hcp\_vault\_name](#input\_hcp\_vault\_name) | Name for HCP Vault cluster. If left as an empty string, a cluster will not be created. | `string` | `""` | no |
 | <a name="input_hcp_vault_public_endpoint"></a> [hcp\_vault\_public\_endpoint](#input\_hcp\_vault\_public\_endpoint) | Enable public endpoint for HCP Vault cluster. | `bool` | `false` | no |
 | <a name="input_hvn_cidr_block"></a> [hvn\_cidr\_block](#input\_hvn\_cidr\_block) | CIDR Block of HashiCorp Virtual Network. Cannot overlap with `vpc_cidr_block`. | `string` | n/a | yes |

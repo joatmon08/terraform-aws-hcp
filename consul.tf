@@ -51,10 +51,11 @@ resource "aws_security_group_rule" "hcp_consul" {
 }
 
 resource "hcp_consul_cluster" "consul" {
-  count           = var.hcp_consul_name != "" ? 1 : 0
-  hvn_id          = hcp_hvn.hvn.hvn_id
-  datacenter      = var.hcp_consul_datacenter
-  cluster_id      = var.hcp_consul_name
-  tier            = "development"
-  public_endpoint = var.hcp_consul_public_endpoint
+  count              = var.hcp_consul_name != "" ? 1 : 0
+  hvn_id             = hcp_hvn.hvn.hvn_id
+  datacenter         = var.hcp_consul_datacenter
+  cluster_id         = var.hcp_consul_name
+  tier               = "development"
+  public_endpoint    = var.hcp_consul_public_endpoint
+  min_consul_version = var.hcp_consul_version
 }
