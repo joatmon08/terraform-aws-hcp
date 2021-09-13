@@ -12,29 +12,40 @@ variable "hvn_cidr_block" {
   description = "CIDR Block of HashiCorp Virtual Network. Cannot overlap with `vpc_cidr_block`."
 }
 
+variable "hvn_peer" {
+  type        = bool
+  description = "Peer HVN to VPC."
+  default     = true
+}
+
 variable "vpc_id" {
   type        = string
   description = "ID of VPC."
+  default     = ""
 }
 
 variable "vpc_owner_id" {
   type        = string
   description = "Owner ID of VPC."
+  default     = ""
 }
 
 variable "vpc_cidr_block" {
   type        = string
   description = "CIDR Block of VPC. Cannot overlap with `hvn_cidr_block`."
+  default     = ""
 }
 
 variable "route_table_ids" {
   type        = list(string)
   description = "List of routing table IDs to route to HVN peering connection."
+  default     = []
 }
 
 variable "number_of_route_table_ids" {
   type        = number
   description = "Number of routing table ids. Works around GH-4149."
+  default     = 0
 }
 
 variable "hcp_consul_name" {
@@ -57,11 +68,11 @@ variable "hcp_consul_security_group_ids" {
 
 variable "hcp_consul_tier" {
   type        = string
-  description = "Tier for HCP Consul cluster. Must be `development` or `standard`."
+  description = "Tier for HCP Consul cluster. Must be `development`, `standard`, or `plus`."
   default     = "development"
   validation {
-    condition     = var.hcp_consul_tier != "development" || var.hcp_consul_tier != "standard"
-    error_message = "The hcp_consul_tier value must be \"development\" or \"standard\"."
+    condition     = contains(["development", "standard", "plus"], var.hcp_consul_tier)
+    error_message = "Not a valid option for hcp_vault_tier."
   }
 }
 
@@ -88,6 +99,23 @@ variable "hcp_vault_name" {
   description = "Name for HCP Vault cluster. If left as an empty string, a cluster will not be created."
   default     = ""
 }
+
+variable "hcp_vault_tier" {
+  type        = string
+  description = "Tier for HCP Vault cluster. See [pricing information](https://cloud.hashicorp.com/pricing/vault?_ga=2.162839740.1812223219.1631540747-2080033703.1609969902)"
+  default     = "dev"
+  validation {
+    condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "starter_small"], var.hcp_vault_tier)
+    error_message = "Not a valid option for hcp_vault_tier."
+  }
+}
+
+variable "hcp_vault_version" {
+  type        = string
+  description = "Minimum Vault version. Defaults to HCP recommendation."
+  default     = null
+}
+
 
 variable "hcp_vault_public_endpoint" {
   type        = bool

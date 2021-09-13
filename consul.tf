@@ -55,7 +55,7 @@ resource "hcp_consul_cluster" "consul" {
   hvn_id             = hcp_hvn.hvn.hvn_id
   datacenter         = var.hcp_consul_datacenter
   cluster_id         = var.hcp_consul_name
-  tier               = "development"
+  tier               = var.hcp_consul_tier
   public_endpoint    = var.hcp_consul_public_endpoint
   min_consul_version = var.hcp_consul_version
 }
