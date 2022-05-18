@@ -1,11 +1,6 @@
 locals {
   ingress_consul_rules = [
     {
-      description = "HCP Consul Server RPC"
-      port        = 8300
-      protocol    = "tcp"
-    },
-    {
       description = "Consul LAN Serf (tcp)"
       port        = 8301
       protocol    = "tcp"
@@ -13,16 +8,6 @@ locals {
     {
       description = "Consul LAN Serf (udp)"
       port        = 8301
-      protocol    = "udp"
-    },
-    {
-      description = "Consul HTTP"
-      port        = 80
-      protocol    = "udp"
-    },
-    {
-      description = "Consul HTTPS"
-      port        = 443
       protocol    = "udp"
     }
   ]

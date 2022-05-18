@@ -2,6 +2,7 @@ variable "hvn_region" {
   type        = string
   description = "AWS region for HashiCorp Virtual Network."
 }
+
 variable "hvn_name" {
   type        = string
   description = "Name of HashiCorp Virtual Network."
@@ -91,7 +92,7 @@ variable "hcp_consul_public_endpoint" {
 variable "tags" {
   type        = map(string)
   description = "Map of tags for resources"
-  default     = { module = "terraform-aws-hcp" }
+  default     = {}
 }
 
 variable "hcp_vault_name" {
@@ -105,7 +106,7 @@ variable "hcp_vault_tier" {
   description = "Tier for HCP Vault cluster. See [pricing information](https://cloud.hashicorp.com/pricing/vault?_ga=2.162839740.1812223219.1631540747-2080033703.1609969902)"
   default     = "dev"
   validation {
-    condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "starter_small"], var.hcp_vault_tier)
+    condition     = contains(["dev", "standard_small", "standard_medium", "standard_large", "starter_small", "plus_small", "plus_medium", "plus_large"], var.hcp_vault_tier)
     error_message = "Not a valid option for hcp_vault_tier."
   }
 }
@@ -116,9 +117,12 @@ variable "hcp_vault_version" {
   default     = null
 }
 
-
 variable "hcp_vault_public_endpoint" {
   type        = bool
   description = "Enable public endpoint for HCP Vault cluster."
   default     = false
+}
+
+locals {
+  tags = merge({ module = "registry.terraform.io/modules/joatmon08/hcp/aws" }, var.tags)
 }
