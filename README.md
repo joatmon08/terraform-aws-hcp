@@ -19,15 +19,15 @@ before using the [HCP Provider for Terraform](https://registry.terraform.io/prov
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.58 |
-| <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | >= 0.15 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.14 |
+| <a name="requirement_hcp"></a> [hcp](#requirement\_hcp) | >= 0.29 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 3.58.0 |
-| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.15.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.14.0 |
+| <a name="provider_hcp"></a> [hcp](#provider\_hcp) | 0.29.0 |
 
 ## Modules
 
@@ -67,7 +67,7 @@ No modules.
 | <a name="input_hvn_region"></a> [hvn\_region](#input\_hvn\_region) | AWS region for HashiCorp Virtual Network. | `string` | n/a | yes |
 | <a name="input_number_of_route_table_ids"></a> [number\_of\_route\_table\_ids](#input\_number\_of\_route\_table\_ids) | Number of routing table ids. Works around GH-4149. | `number` | `0` | no |
 | <a name="input_route_table_ids"></a> [route\_table\_ids](#input\_route\_table\_ids) | List of routing table IDs to route to HVN peering connection. | `list(string)` | `[]` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Map of tags for resources | `map(string)` | <pre>{<br>  "module": "terraform-aws-hcp"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Map of tags for resources | `map(string)` | `{}` | no |
 | <a name="input_vpc_cidr_block"></a> [vpc\_cidr\_block](#input\_vpc\_cidr\_block) | CIDR Block of VPC. Cannot overlap with `hvn_cidr_block`. | `string` | `""` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of VPC. | `string` | `""` | no |
 | <a name="input_vpc_owner_id"></a> [vpc\_owner\_id](#input\_vpc\_owner\_id) | Owner ID of VPC. | `string` | `""` | no |
@@ -76,9 +76,11 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_hcp_consul_datacenter"></a> [hcp\_consul\_datacenter](#output\_hcp\_consul\_datacenter) | Datacenter of HCP Consul Cluster. |
 | <a name="output_hcp_consul_id"></a> [hcp\_consul\_id](#output\_hcp\_consul\_id) | ID of HCP Consul. |
 | <a name="output_hcp_consul_private_endpoint"></a> [hcp\_consul\_private\_endpoint](#output\_hcp\_consul\_private\_endpoint) | Private endpoint of HCP Consul. |
 | <a name="output_hcp_consul_public_endpoint"></a> [hcp\_consul\_public\_endpoint](#output\_hcp\_consul\_public\_endpoint) | Public endpoint of HCP Consul. |
+| <a name="output_hcp_vault_datacenter"></a> [hcp\_vault\_datacenter](#output\_hcp\_vault\_datacenter) | Namespce used in HCP Vault. |
 | <a name="output_hcp_vault_id"></a> [hcp\_vault\_id](#output\_hcp\_vault\_id) | ID of HCP Vault. |
 | <a name="output_hcp_vault_private_endpoint"></a> [hcp\_vault\_private\_endpoint](#output\_hcp\_vault\_private\_endpoint) | Private endpoint of HCP Vault. |
 | <a name="output_hcp_vault_public_endpoint"></a> [hcp\_vault\_public\_endpoint](#output\_hcp\_vault\_public\_endpoint) | Public endpoint of HCP Vault. |

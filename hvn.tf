@@ -20,7 +20,7 @@ resource "aws_vpc_peering_connection_accepter" "hvn" {
   count                     = var.hvn_peer ? 1 : 0
   vpc_peering_connection_id = hcp_aws_network_peering.peer.0.provider_peering_id
   auto_accept               = true
-  tags = local.tags
+  tags                      = local.tags
 }
 
 resource "aws_route" "hvn" {
