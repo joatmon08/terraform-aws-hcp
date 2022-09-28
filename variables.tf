@@ -123,6 +123,23 @@ variable "hcp_vault_public_endpoint" {
   default     = false
 }
 
+variable "datadog_api_key" {
+  type        = string
+  description = "Datadog API key for metrics and audit logs"
+  sensitive   = true
+  default     = null
+}
+
+variable "datadog_region" {
+  type        = string
+  description = "Datadog API key for metrics and audit logs"
+  default     = null
+}
+
 locals {
   tags = merge({ module = "registry.terraform.io/modules/joatmon08/hcp/aws" }, var.tags)
+  datadog_config = (var.datadog_api_key != null && var.datadog_region != null) ? [{
+    api_key = var.datadog_api_key
+    region  = var.datadog_region
+  }] : []
 }
