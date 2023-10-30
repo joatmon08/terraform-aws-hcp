@@ -35,12 +35,26 @@ resource "aws_security_group_rule" "hcp_consul" {
   type              = "ingress"
 }
 
+resource "aws_security_group_rule" "hcp_consul_clients" {
+  count                    = length(local.hcp_consul_security_groups)
+  description              = "${local.hcp_consul_security_groups[count.index].description} between clients"
+  protocol                 = local.hcp_consul_security_groups[count.index].protocol
+  security_group_id        = local.hcp_consul_security_groups[count.index].security_group_id
+  source_security_group_id = local.hcp_consul_security_groups[count.index].security_group_id
+  from_port                = local.hcp_consul_security_groups[count.index].port
+  to_port                  = local.hcp_consul_security_groups[count.index].port
+  type                     = "ingress"
+}
+
 resource "hcp_consul_cluster" "consul" {
-  count              = var.hcp_consul_name != "" ? 1 : 0
+  count              = var.hcp_consul_name != null ? 1 : 0
   hvn_id             = hcp_hvn.hvn.hvn_id
   datacenter         = var.hcp_consul_datacenter
   cluster_id         = var.hcp_consul_name
   tier               = var.hcp_consul_tier
   public_endpoint    = var.hcp_consul_public_endpoint
   min_consul_version = var.hcp_consul_version
+
+  auto_hvn_to_hvn_peering = var.hcp_consul_peering
+  primary_link            = var.hcp_consul_primary_link
 }

@@ -1,3 +1,5 @@
+## HVN Attributes
+
 variable "hvn_region" {
   type        = string
   description = "AWS region for HashiCorp Virtual Network."
@@ -13,10 +15,32 @@ variable "hvn_cidr_block" {
   description = "CIDR Block of HashiCorp Virtual Network. Cannot overlap with `vpc_cidr_block`."
 }
 
+# Use transit gateway to connect VPC and HVN
+
+variable "use_transit_gateway" {
+  type        = bool
+  description = "Use transit gateway for connecting HVN and VPC."
+  default     = false
+}
+
+variable "transit_gateway_arn" {
+  type        = string
+  description = "Transit gateway ARN."
+  default     = ""
+}
+
+variable "transit_gateway_id" {
+  type        = string
+  description = "Transit gateway ID."
+  default     = ""
+}
+
+# Use peering to connect VPC and HVN
+
 variable "hvn_peer" {
   type        = bool
   description = "Peer HVN to VPC."
-  default     = true
+  default     = false
 }
 
 variable "vpc_id" {
@@ -49,10 +73,18 @@ variable "number_of_route_table_ids" {
   default     = 0
 }
 
+variable "tags" {
+  type        = map(string)
+  description = "Tags for AWS resources"
+  default     = {}
+}
+
+## HCP Consul Attributes
+
 variable "hcp_consul_name" {
   type        = string
   description = "Name for HCP Consul cluster. If left as an empty string, a cluster will not be created."
-  default     = ""
+  default     = null
 }
 
 variable "hcp_consul_datacenter" {
@@ -89,16 +121,24 @@ variable "hcp_consul_public_endpoint" {
   default     = false
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "Map of tags for resources"
-  default     = {}
+variable "hcp_consul_peering" {
+  type        = bool
+  description = "Enable peering of HCP Consul clusters"
+  default     = false
 }
+
+variable "hcp_consul_primary_link" {
+  type        = string
+  description = "`self_link` of the HCP Consul primary cluster for federation"
+  default     = null
+}
+
+## HCP Vault Attributes
 
 variable "hcp_vault_name" {
   type        = string
   description = "Name for HCP Vault cluster. If left as an empty string, a cluster will not be created."
-  default     = ""
+  default     = null
 }
 
 variable "hcp_vault_tier" {
@@ -123,6 +163,18 @@ variable "hcp_vault_public_endpoint" {
   default     = false
 }
 
+variable "hcp_vault_primary_link" {
+  type        = string
+  description = "`self_link` of the HCP Vault primary cluster for performance replication."
+  default     = null
+}
+
+variable "hcp_vault_paths_filter" {
+  type        = list(string)
+  description = "Path filter for HCP Vault performance replication."
+  default     = null
+}
+
 variable "datadog_api_key" {
   type        = string
   description = "Datadog API key for metrics and audit logs"
@@ -134,6 +186,24 @@ variable "datadog_region" {
   type        = string
   description = "Datadog API key for metrics and audit logs"
   default     = null
+}
+
+## HCP Boundary Attributes
+
+variable "hcp_boundary_name" {
+  type        = string
+  description = "Name for HCP Boundary cluster. If left as an empty string, a cluster will not be created."
+  default     = null
+}
+
+variable "hcp_boundary_tier" {
+  type        = string
+  description = "HCP Boundary Tier"
+  default     = "Standard"
+  validation {
+    condition     = contains(["Standard", "Plus"], var.hcp_boundary_tier)
+    error_message = "Not a valid option for hcp_boundary_tier."
+  }
 }
 
 locals {
