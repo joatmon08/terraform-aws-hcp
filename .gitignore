@@ -1,1 +1,3 @@
 test/.terraform.lock.hcl
+secrets/
+secrets.auto.tfvars
