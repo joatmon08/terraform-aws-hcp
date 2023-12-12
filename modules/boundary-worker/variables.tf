@@ -11,13 +11,19 @@ variable "boundary_addr" {
 variable "boundary_scope_id" {
   description = "Boundary scope ID for worker, defaults to global"
   type        = string
-  default     = null
+  default     = "global"
 }
 
 variable "worker_upstreams" {
   description = "A list of workers to connect to upstream. For multi-hop worker sessions. Format should be [\"<upstream_worker_public_addr>:9202\"]"
   type        = list(string)
   default     = []
+}
+
+variable "worker_prefix" {
+  description = "Optional worker prefix for naming workers"
+  type        = string
+  default     = ""
 }
 
 variable "worker_tags" {
@@ -62,12 +68,10 @@ variable "worker_security_group_id" {
 variable "boundary_username" {
   description = "Boundary username. Set because of `terraform test`."
   type        = string
-  default     = null
 }
 
 variable "boundary_password" {
   description = "Boundary password. Set because of `terraform test`."
   type        = string
   sensitive   = true
-  default     = null
 }

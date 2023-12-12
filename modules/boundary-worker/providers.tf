@@ -5,9 +5,5 @@ terraform {
       source  = "hashicorp/aws"
       version = ">=5.0"
     }
-    boundary = {
-      source  = "hashicorp/boundary"
-      version = ">=1.1"
-    }
   }
 }

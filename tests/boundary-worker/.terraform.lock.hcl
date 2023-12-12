@@ -43,22 +43,3 @@ provider "registry.terraform.io/hashicorp/boundary" {
     "zh:c9831dcc062b238bfb79ae19bb40c0b6635056a61510912ea07d8a8f2218b40f",
   ]
 }
-
-provider "registry.terraform.io/hashicorp/hcp" {
-  version = "0.77.0"
-  hashes = [
-    "h1:FFSJizyd+0lGVMsJDY3ARKaiMHFh9MTZTZaXVy3YuOo=",
-    "zh:0e0c0ced0d3a7557111413ef3d5a81c907efae73a3fb64b8434da143dcf69dd2",
-    "zh:430245e6c51b871672a1e5d5e2ee248d769392d71cb63969631f51de515386da",
-    "zh:541d4532c875b2ee7ecb98da9a1461e76788893b623b0adf7c634d9fff7770e3",
-    "zh:5ce73429237bac92eeca5bd9d0d1975b0ca357ab4d1f09fbb1ffc9ebb95bea4f",
-    "zh:630926391c44b625a6f85f22f93b4f0929e5bac55da37b1ff5d407b716051780",
-    "zh:6ab6d21bafc7710a8d0824c447876cf8e5cf0af994a25971c5cf6bb11e745f1d",
-    "zh:6be08943cb6ee37d5cb20820f733c499663774fa79f70af0cf2f6b7e697f492d",
-    "zh:743b2ddfced58c16df829efeffdc2adb173a9ca483d966037a46702997a9ce86",
-    "zh:8500056a9160792f1abb2e862e0f471127b99572f26a4df95470076731c87ee0",
-    "zh:bc6701a17a97e6a77c7070c21970bbcc1f4ef4fb462ca22f6b359052bce9d92d",
-    "zh:c7551d791179f298e90ac8fec73ac1a983b1aa86f3df2634f6ea84ac714b6d58",
-    "zh:f05d8d65007826f58fc7c13cb232c1b784cf88894d18fffc3738d19aede49d73",
-  ]
-}

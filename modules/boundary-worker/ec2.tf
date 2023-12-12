@@ -26,10 +26,14 @@ resource "aws_instance" "worker" {
   associate_public_ip_address = true
 
   user_data = templatefile("${path.module}/templates/user_data_worker.tmpl.sh", {
-    boundary_cluster_id                   = split(".", replace(var.boundary_addr, "https://", "")).0
-    initial_upstreams                     = jsonencode(var.worker_upstreams)
-    worker_tags                           = jsonencode(var.worker_tags)
-    controller_generated_activation_token = boundary_worker.worker.controller_generated_activation_token
+    boundary_cluster_id = split(".", replace(var.boundary_addr, "https://", "")).0
+    boundary_scope_id   = var.boundary_scope_id
+    boundary_addr       = var.boundary_addr
+    boundary_username   = var.boundary_username
+    boundary_password   = var.boundary_password
+    initial_upstreams   = jsonencode(var.worker_upstreams)
+    worker_tags         = jsonencode(var.worker_tags)
+    worker_prefix       = var.worker_prefix
   })
 
   ebs_block_device {
