@@ -98,16 +98,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_hcp_boundary_endpoint"></a> [hcp\_boundary\_endpoint](#output\_hcp\_boundary\_endpoint) | Public endpoint of HCP Boundary. |
-| <a name="output_hcp_boundary_id"></a> [hcp\_boundary\_id](#output\_hcp\_boundary\_id) | ID of HCP Boundary. |
-| <a name="output_hcp_consul_datacenter"></a> [hcp\_consul\_datacenter](#output\_hcp\_consul\_datacenter) | Datacenter of HCP Consul Cluster. |
-| <a name="output_hcp_consul_id"></a> [hcp\_consul\_id](#output\_hcp\_consul\_id) | ID of HCP Consul. |
-| <a name="output_hcp_consul_private_endpoint"></a> [hcp\_consul\_private\_endpoint](#output\_hcp\_consul\_private\_endpoint) | Private endpoint of HCP Consul. |
-| <a name="output_hcp_consul_public_endpoint"></a> [hcp\_consul\_public\_endpoint](#output\_hcp\_consul\_public\_endpoint) | Public endpoint of HCP Consul. |
-| <a name="output_hcp_consul_self_link"></a> [hcp\_consul\_self\_link](#output\_hcp\_consul\_self\_link) | Self link of HCP Consul. |
-| <a name="output_hcp_vault_id"></a> [hcp\_vault\_id](#output\_hcp\_vault\_id) | ID of HCP Vault. |
-| <a name="output_hcp_vault_namespace"></a> [hcp\_vault\_namespace](#output\_hcp\_vault\_namespace) | Namespce used in HCP Vault. |
-| <a name="output_hcp_vault_private_endpoint"></a> [hcp\_vault\_private\_endpoint](#output\_hcp\_vault\_private\_endpoint) | Private endpoint of HCP Vault. |
-| <a name="output_hcp_vault_public_endpoint"></a> [hcp\_vault\_public\_endpoint](#output\_hcp\_vault\_public\_endpoint) | Public endpoint of HCP Vault. |
-| <a name="output_hcp_vault_self_link"></a> [hcp\_vault\_self\_link](#output\_hcp\_vault\_self\_link) | Self link of HCP Vault. |
-| <a name="output_hvn_id"></a> [hvn\_id](#output\_hvn\_id) | ID of HashiCorp Virtual Network. |
+| <a name="output_boundary"></a> [boundary](#output\_boundary) | HCP Boundary cluster attributes |
+| <a name="output_consul"></a> [consul](#output\_consul) | HCP Consul cluster attributes |
+| <a name="output_hvn"></a> [hvn](#output\_hvn) | HVN attributes |
+| <a name="output_vault"></a> [vault](#output\_vault) | HCP Vault cluster attributes |
