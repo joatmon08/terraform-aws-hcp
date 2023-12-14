@@ -71,12 +71,3 @@ resource "aws_security_group_rule" "allow_9202_worker" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = var.worker_security_group_id != null ? var.worker_security_group_id : aws_security_group.worker.0.id
 }
-
-resource "aws_security_group_rule" "allow_egress_worker" {
-  type              = "egress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = var.worker_security_group_id != null ? var.worker_security_group_id : aws_security_group.worker.0.id
-}
