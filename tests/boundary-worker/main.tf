@@ -8,3 +8,12 @@ module "worker" {
   boundary_username       = var.boundary_username
   boundary_password       = var.boundary_password
 }
+
+resource "aws_security_group_rule" "allow_boundary_worker_egress" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = module.worker.security_group_id
+}
