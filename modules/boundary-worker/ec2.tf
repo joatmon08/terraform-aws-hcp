@@ -30,7 +30,7 @@ resource "aws_instance" "worker" {
     boundary_scope_id   = var.boundary_scope_id
     boundary_addr       = var.boundary_addr
     boundary_username   = var.boundary_username
-    boundary_password   = var.boundary_password
+    boundary_password   = base64encode(var.boundary_password)
     initial_upstreams   = jsonencode(var.worker_upstreams)
     worker_tags         = jsonencode(var.worker_tags)
     worker_prefix       = var.worker_prefix

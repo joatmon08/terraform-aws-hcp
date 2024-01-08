@@ -20,7 +20,7 @@ chown boundary:boundary -R /var/lib/boundary
 chgrp boundary /var/lib/boundary
 chmod g+rwx /var/lib/boundary
 
-echo '${boundary_password}' > /etc/boundary.d/password
+echo "${boundary_password}" | base64 -d > /etc/boundary.d/password
 
 ## Activate worker using controller-led worker registration
 
