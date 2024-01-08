@@ -84,6 +84,6 @@ variable "allow_cidr_blocks_to_worker" {
 
 variable "additional_policy_arns" {
   description = "Additional policies to attach to Boundary worker"
-  type        = set(string)
+  type        = list(string)
   default     = []
 }

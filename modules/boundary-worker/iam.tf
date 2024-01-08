@@ -27,7 +27,7 @@ resource "aws_iam_instance_profile" "boundary" {
 }
 
 resource "aws_iam_role_policy_attachment" "boundary" {
-  for_each   = var.additional_policy_arns
+  count      = length(var.additional_policy_arns)
   role       = aws_iam_role.boundary.name
-  policy_arn = each.key
+  policy_arn = var.additional_policy_arns[count.index]
 }
