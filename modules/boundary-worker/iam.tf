@@ -25,3 +25,9 @@ resource "aws_iam_instance_profile" "boundary" {
   name_prefix = var.name
   role        = aws_iam_role.boundary.name
 }
+
+resource "aws_iam_role_policy_attachment" "boundary" {
+  for_each   = var.additional_policy_arns
+  role       = aws_iam_role.boundary.name
+  policy_arn = each.key
+}
