@@ -75,3 +75,9 @@ variable "boundary_password" {
   type        = string
   sensitive   = true
 }
+
+variable "allow_cidr_blocks_to_worker" {
+  description = "Allow CIDR blocks to worker"
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}

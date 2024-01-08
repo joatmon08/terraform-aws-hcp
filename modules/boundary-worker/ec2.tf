@@ -68,6 +68,6 @@ resource "aws_security_group_rule" "allow_9202_worker" {
   from_port         = 9202
   to_port           = 9202
   protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
+  cidr_blocks       = var.allow_cidr_blocks_to_worker
   security_group_id = var.worker_security_group_id != null ? var.worker_security_group_id : aws_security_group.worker.0.id
 }
