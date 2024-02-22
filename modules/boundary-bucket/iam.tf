@@ -13,6 +13,7 @@ data "aws_iam_policy_document" "boundary" {
       "s3:PutObject",
       "s3:GetObject",
       "s3:GetObjectAttributes",
+      "s3:DeleteObject",
     ]
     resources = ["${aws_s3_bucket.boundary.arn}/*"]
   }
